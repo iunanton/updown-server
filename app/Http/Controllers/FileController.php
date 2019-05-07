@@ -113,7 +113,7 @@ class FileController extends Controller
      */
     public function show(File $file)
     {
-        if ($file->user != $this->user) {
+        if ($file->user->id != $this->user->id) {
             return abort(401);
         }
 
