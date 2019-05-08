@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">My Files</div>
 
@@ -14,7 +14,40 @@
                         </div>
                     @endif
 
-                    {{ json_encode($files) }}
+                    @if ($files->count() == 0)
+                        <p>No files</p>
+                    @else
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Size</th>
+                                    <th>Encrypted</th>
+                                    <th>MIME type</th>
+                                    <th>Preview</th>
+                                    <th>Owner</th>
+                                    <th>Created at</th>
+                                    <th>Updated at</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($files as $file)
+                                    <tr>
+                                        <td>{{ $file->id }}</td>
+                                        <td>{{ $file->name }}</td>
+                                        <td>{{ $file->size }}</td>
+                                        <td>{{ $file->encrypted ? yes : no }}</td>
+                                        <td>{{ $file->mime_type }}</td>
+                                        <td>{{ $file->preview }}</td>
+                                        <td>{{ $file->user_id }}</td>
+                                        <td>{{ $file->created_at }}</td>
+                                        <td>{{ $file->updated_at }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @endif
                 </div>
             </div>
         </div>
