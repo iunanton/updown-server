@@ -34,10 +34,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('My Files') }}</a>
+                            <a class="nav-link" href="{{ route('file.index') }}">{{ __('My Files') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">{{ __('Upload') }}</a>
+                            <a class="nav-link" href="{{ route('file.create') }}">{{ __('Upload') }}</a>
                         </li>
                     </ul>
 

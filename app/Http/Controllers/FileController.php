@@ -35,7 +35,7 @@ class FileController extends Controller
      */
     public function create()
     {
-        //
+        return 'OK';
     }
 
     /**
@@ -57,7 +57,18 @@ class FileController extends Controller
      */
     public function show(File $file)
     {
-        //
+        if ($file->user->id != $this->user->id) {
+            return abort(401);
+        }
+
+        if ($file->encrypted) {
+            $fileContent = decrypt(Storage::get($this->getPath() . $file->name));
+	} else {
+            $fileContent = Storage::get($this->getPath() . $file->name);
+        }
+        return response()->streamDownload(function() use ($fileContent) {
+            echo $fileContent;
+        }, $file->name);
     }
 
     /**

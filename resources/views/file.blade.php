@@ -35,7 +35,7 @@
                                 @foreach ($files as $file)
                                     <tr>
                                         <td>{{ $file->id }}</td>
-                                        <td>{{ $file->name }}</td>
+                                        <td><a href="{{ route('file.show', $file->id) }}">{{ $file->name }}</a></td>
                                         <td>{{ $file->size }}</td>
                                         <td>{{ $file->encrypted ? "yes" : "no" }}</td>
                                         <td>{{ $file->mime_type }}</td>
