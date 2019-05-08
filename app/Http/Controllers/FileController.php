@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class FileController extends Controller
@@ -30,7 +31,7 @@ class FileController extends Controller
     public function index()
     {
         $files = $this->user->files;
-        return view('file.index')->with('files', $files);
+        return view('file.index')->with('files', $files)->with('spaceSize', $this->user->space_size)->with('spaceUsed', $this->user->space_used);
     }
 
     /**

@@ -9,12 +9,15 @@
 
 .navbar-brand {
   font-weight: 800;
-  color: #D81B60 !important;
+  color: $my-pink !important;
 }
-
 
 .btn-pink {
   color: #FFFFFF;
-  background-color: #D81B60;
-  border-color: #D81B60;
+  background-color: $my-pink;
+  border-color: $my-pink;
+}
+
+.bg-pink {
+    background-color: $my-pink !important;
 }

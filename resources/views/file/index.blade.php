@@ -50,6 +50,9 @@
                     @endif
                 </div>
             </div>
+            <div class="progress my-2">
+                <div class="progress-bar bg-pink" role="progressbar" style="width: {{ $spaceUsed * 100 / $spaceSize }}%" aria-valuenow="{{ $spaceUsed * 100 / $spaceSize }}" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
         </div>
     </div>
 </div>

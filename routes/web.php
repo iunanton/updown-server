@@ -21,4 +21,4 @@ Auth::routes([
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('file', 'FileController')->only(['index', 'create', 'show']);
+Route::resource('file', 'FileController')->only(['index', 'create', 'store', 'show']);
