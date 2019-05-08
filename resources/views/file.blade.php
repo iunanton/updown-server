@@ -37,7 +37,7 @@
                                         <td>{{ $file->id }}</td>
                                         <td>{{ $file->name }}</td>
                                         <td>{{ $file->size }}</td>
-                                        <td>{{ $file->encrypted ? yes : no }}</td>
+                                        <td>{{ $file->encrypted ? "yes" : "no" }}</td>
                                         <td>{{ $file->mime_type }}</td>
                                         <td>{{ $file->preview }}</td>
                                         <td>{{ $file->user_id }}</td>
