@@ -30,7 +30,7 @@ class FileController extends Controller
     public function index()
     {
         $files = $this->user->files;
-        return view('file')->with('files', $files);
+        return view('file.index')->with('files', $files);
     }
 
     /**
@@ -40,7 +40,23 @@ class FileController extends Controller
      */
     public function create()
     {
-        return 'OK';
+        return view('file.create');
+    }
+
+    /**
+     * Get a validator for an incoming store request.
+     *
+     * @override
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'data' => ['required', 'file'],
+            'preview' => ['string', 'max:65535'],
+            'encrypt' => ['boolean'],
+        ]);
     }
 
     /**
@@ -51,7 +67,40 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $errors = $this->validator($request->all())->errors();
+
+        if (count($errors)) {
+            return response(['errors' => $errors], 400);
+        }
+
+        $size = $request->file('data')->getSize();
+
+        if ($this->user->space_used + $size > $this->user->space_size) {
+            return response(['errors' => ['Quota limit has been reached.']], 400);
+        }
+
+        $file = new File();
+        $file->name = $request->file('data')->getClientOriginalName();
+        $file->mime_type = $request->file('data')->getClientMimeType();
+        $file->size = $size;
+        $file->user_id = $this->user->id;
+
+        if ($request->has('preview')) {
+            $file->preview = $request->input('preview');
+        }
+
+	if ($request->has('encrypt') && $request->input('encrypt')) {
+            $file->encrypted = true;
+            $fileContent = encrypt($request->file('data')->get());
+        } else {
+            $fileContent = $request->file('data')->get();
+        }
+
+        Storage::put($this->getPath() . $file->name, $fileContent);
+
+        $file->save();
+
+        return redirect()->route('file.index')->with('status', 'File uploaded!');
     }
 
     /**
