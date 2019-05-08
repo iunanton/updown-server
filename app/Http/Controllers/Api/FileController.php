@@ -24,6 +24,7 @@ class FileController extends Controller
     private function getPath() {
         return 'files/' . $this->user->id . '/';
     }
+
     /**
      * Display a listing of the resource.
      *

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\File;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class FileController extends Controller
@@ -15,6 +16,10 @@ class FileController extends Controller
             $this->user = Auth::user();
             return $next($request);
         });
+    }
+
+    private function getPath() {
+        return 'files/' . $this->user->id . '/';
     }
 
     /**
