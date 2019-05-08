@@ -19,5 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::middleware('auth:api')->group(function () {
     Route::get('/space', 'UserController@space');
-    Route::apiResource('file', 'FileController')->only(['index', 'store', 'show', 'destroy']);
+    Route::apiResource('file', 'Api\FileController')->only(['index', 'store', 'show', 'destroy']);
 });
