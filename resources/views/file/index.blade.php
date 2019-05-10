@@ -18,7 +18,7 @@
                         <p>No files</p>
                     @else
                         <div class="table-responsive">
-                            <table class="table" style="min-width: 1300px;">
+                            <table class="table table-striped" style="min-width: 1400px;">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -49,7 +49,7 @@
                                                 <form action="{{ route('file.destroy', $file->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button>Delete</button>
+                                                    <button class="btn btn-pink btn-sm">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>
