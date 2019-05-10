@@ -17,36 +17,38 @@
                     @if ($files->count() == 0)
                         <p>No files</p>
                     @else
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Size</th>
-                                    <th>Encrypted</th>
-                                    <th>MIME type</th>
-                                    <th>Preview</th>
-                                    <th>Owner</th>
-                                    <th>Created at</th>
-                                    <th>Updated at</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($files as $file)
+                        <div class="table-responsive">
+                            <table class="table" style="min-width: 1300px;">
+                                <thead>
                                     <tr>
-                                        <td>{{ $file->id }}</td>
-                                        <td><a href="{{ route('file.show', $file->id) }}">{{ $file->name }}</a></td>
-                                        <td>{{ $file->size }}</td>
-                                        <td>{{ $file->encrypted ? "yes" : "no" }}</td>
-                                        <td>{{ $file->mime_type }}</td>
-                                        <td>{{ $file->preview }}</td>
-                                        <td>{{ $file->user_id }}</td>
-                                        <td>{{ $file->created_at }}</td>
-                                        <td>{{ $file->updated_at }}</td>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Size</th>
+                                        <th>Encrypted</th>
+                                        <th>MIME type</th>
+                                        <th>Preview</th>
+                                        <th>Owner</th>
+                                        <th>Created at</th>
+                                        <th>Updated at</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($files as $file)
+                                        <tr>
+                                            <td>{{ $file->id }}</td>
+                                            <td><a href="{{ route('file.show', $file->id) }}">{{ \Illuminate\Support\Str::limit($file->name, 30, '[...]') }}</a></td>
+                                            <td>{{ $file->size }}</td>
+                                            <td>{{ $file->encrypted ? "yes" : "no" }}</td>
+                                            <td>{{ $file->mime_type }}</td>
+                                            <td>{{ $file->preview }}</td>
+                                            <td>{{ $file->user_id }}</td>
+                                            <td>{{ $file->created_at }}</td>
+                                            <td>{{ $file->updated_at }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     @endif
                 </div>
             </div>
