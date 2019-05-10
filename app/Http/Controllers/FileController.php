@@ -157,6 +157,11 @@ class FileController extends Controller
      */
     public function destroy(File $file)
     {
-        //
+        $path = "files/" . $this->user->id . "/";
+        if (Storage::exists($path . $file->name)) {
+            Storage::delete($path . $file->name);
+        }
+        $file->delete();
+        return redirect()->route('file.index')->with('status', 'File deleted!');
     }
 }

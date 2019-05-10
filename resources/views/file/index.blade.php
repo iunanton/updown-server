@@ -30,6 +30,7 @@
                                         <th>Owner</th>
                                         <th>Created at</th>
                                         <th>Updated at</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -44,6 +45,13 @@
                                             <td>{{ $file->user_id }}</td>
                                             <td>{{ $file->created_at }}</td>
                                             <td>{{ $file->updated_at }}</td>
+                                            <td>
+                                                <form action="{{ route('file.destroy', $file->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button>Delete</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

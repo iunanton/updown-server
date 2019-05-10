@@ -22,5 +22,5 @@ Auth::routes([
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('auth')->group(function() {
-    Route::resource('file', 'FileController')->only(['index', 'create', 'store', 'show']);
+    Route::resource('file', 'FileController')->only(['index', 'create', 'store', 'show', 'destroy']);
 });
