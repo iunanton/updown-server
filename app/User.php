@@ -12,6 +12,13 @@ class User extends Authenticatable
     use HasApiTokens, Notifiable;
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['used_space'];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -46,7 +53,7 @@ class User extends Authenticatable
         return $this->hasMany('App\File');
     }
 
-    public function getSpaceUsedAttribute() {
+    public function getUsedSpaceAttribute() {
         return $this->files->sum('size');
     }
 }

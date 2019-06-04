@@ -19,6 +19,8 @@ Auth::routes([
     'register' => false,
 ]);
 
+Route::view('/api', 'api')->name('api');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('auth')->group(function() {
