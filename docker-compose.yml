@@ -4,6 +4,6 @@ services:
                 build:
                         context: .
                         dockerfile: .docker/Dockerfile
-                image: laravel-docker
+                image: updown-server
                 ports:
                         - 8090:80
