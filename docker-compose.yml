@@ -5,5 +5,11 @@ services:
                         context: .
                         dockerfile: .docker/Dockerfile
                 image: updown-server
+                volumes:
+                        - files:/srv/app/storage/app/files
                 ports:
                         - 8090:80
+
+volumes:
+        files:
+                external: false
