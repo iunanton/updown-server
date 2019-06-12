@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="progress my-2">
-                <div class="progress-bar bg-pink" role="progressbar" style="width: {{ $spaceUsed * 100 / $spaceSize }}%" aria-valuenow="{{ $spaceUsed * 100 / $spaceSize }}" aria-valuemin="0" aria-valuemax="100">{{ $spaceUsed . " / " . $spaceSize }}</div>
+                <div class="progress-bar bg-pink" role="progressbar" style="width: {{ $usedSpace * 100 / $spaceSize }}%" aria-valuenow="{{ $usedSpace * 100 / $spaceSize }}" aria-valuemin="0" aria-valuemax="100">{{ $usedSpace . " / " . $spaceSize }}</div>
             </div>
         </div>
     </div>

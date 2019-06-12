@@ -31,7 +31,7 @@ class FileController extends Controller
     public function index()
     {
         $files = $this->user->files;
-        return view('file.index')->with('files', $files)->with('spaceSize', $this->user->space_size)->with('spaceUsed', $this->user->space_used);
+        return view('file.index')->with('files', $files)->with('spaceSize', $this->user->space_size)->with('usedSpace', $this->user->used_space);
     }
 
     /**
