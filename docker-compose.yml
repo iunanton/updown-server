@@ -5,6 +5,7 @@ services:
                         context: .
                         dockerfile: .docker/Dockerfile
                 image: updown-server
+                restart: always
                 volumes:
                         - files:/srv/app/storage/app/files
                 ports:
