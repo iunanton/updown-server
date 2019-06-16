@@ -5,6 +5,7 @@ services:
                         context: .
                         dockerfile: .docker/Dockerfile
                 image: updown-server
+                network_mode: bridge
                 restart: always
                 volumes:
                         - files:/srv/app/storage/app/files
