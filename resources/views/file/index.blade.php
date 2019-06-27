@@ -22,11 +22,11 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Preview</th>
                                         <th>Name</th>
                                         <th>Size</th>
                                         <th>Encrypted</th>
                                         <th>MIME type</th>
-                                        <th>Preview</th>
                                         <th>Owner</th>
                                         <th>Created at</th>
                                         <th>Updated at</th>
@@ -37,11 +37,17 @@
                                     @foreach ($files as $file)
                                         <tr>
                                             <td>{{ $file->id }}</td>
+                                            <td>
+                                                @empty ($file->preview)
+                                                    NULL
+                                                @else
+                                                    <img src="data:image/png;base64, {{ $file->preview }}" width="16" height="16" alt="Preview">
+                                                @endempty
+                                            </td>
                                             <td><a href="{{ route('file.show', $file->id) }}">{{ \Illuminate\Support\Str::limit($file->name, 30, '[...]') }}</a></td>
                                             <td>{{ $file->size }}</td>
                                             <td>{{ $file->encrypted ? "yes" : "no" }}</td>
-                                            <td>{{ $file->mime_type }}</td>
-                                            <td>{{ $file->preview }}</td>
+                                            <td>{{ \Illuminate\Support\Str::limit($file->mime_type, 30, '[...]') }}</td>
                                             <td>{{ $file->user_id }}</td>
                                             <td>{{ $file->created_at }}</td>
                                             <td>{{ $file->updated_at }}</td>
