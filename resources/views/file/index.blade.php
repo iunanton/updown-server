@@ -44,7 +44,7 @@
                                                     <img src="data:image/png;base64, {{ $file->preview }}" width="16" height="16" alt="Preview">
                                                 @endempty
                                             </td>
-                                            <td><a href="{{ route('file.show', $file->id) }}">{{ \Illuminate\Support\Str::limit($file->name, 30, '[...]') }}</a></td>
+                                            <td><a href="{{ route('file.show', $file->id) }}">{{ \Illuminate\Support\Str::limit(urldecode($file->name), 30, '[...]') }}</a></td>
                                             <td>{{ $file->size }}</td>
                                             <td>{{ $file->encrypted ? "yes" : "no" }}</td>
                                             <td>{{ \Illuminate\Support\Str::limit($file->mime_type, 30, '[...]') }}</td>

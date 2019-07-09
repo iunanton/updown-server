@@ -123,7 +123,7 @@ class FileController extends Controller
         }
         return response()->streamDownload(function() use ($fileContent) {
             echo $fileContent;
-        }, $file->name, ['Content-Type' => $file->mime_type], 'inline');
+        }, urldecode($file->name), ['Content-Type' => $file->mime_type], 'inline');
     }
 
     /**
